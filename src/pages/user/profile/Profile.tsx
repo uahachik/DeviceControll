@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { AvatarImage, Button, Container, ProfileBio, ProfileCard, ProfileContent, ProfileImage, ProfileImageContainer, ProfileName, Title } from './styled';
 
 const Profile = () => {
@@ -8,12 +9,15 @@ const Profile = () => {
     avatar: 'https://via.placeholder.com/48' // Use a smaller placeholder for the avatar
   };
   const { name, profile, image, avatar } = user;
+
+  const navigate = useNavigate();
+
   return (
     <>
-      <Button primary={false} />
+      <Button $primary={false} onClick={() => navigate('/')}>{'<<<'}</Button>
       <Container color="bg-yellow-300">
         {/* <Container> */}
-        <Title large={true} >
+        <Title $large={true} >
           Profile Component
         </Title>
         <ProfileCard>

@@ -1,5 +1,4 @@
 import tw from 'tailwind-styled-components';
-import styled from 'styled-components';
 
 // const Card = tw.div`
 //   w-full
@@ -19,20 +18,17 @@ import styled from 'styled-components';
 
 
 interface TitleProps {
-  large: boolean;
+  $large?: boolean;
 }
 
-// ${(props) => props.color || 'bg-blue-500'}
-const ColorizedContainer = styled.section`
-  ${(props) => {
-    console.log(props);
-    return '';
-  }}
-`;
-// background-color: ${(props) => props.color || 'transparent'};
-// background-color: yellow;
+// const ColorizedContainer = styled.section`
+//   ${(props) => {
+//     console.log(props);
+//     return '';
+//   }}
+// `;
 
-export const Container = tw(ColorizedContainer)`
+export const Container = tw.section`
   flex
   flex-col
   items-center
@@ -82,10 +78,13 @@ export const ProfileBio = tw.p`
 
 export const Title = tw.h1<TitleProps>`
   my-6
-  ${(props) => (props.large ? 'text-indigo-500' : 'text-base')}
+  ${(props) => props.$large ? 'text-indigo-500' : 'text-base'}
 `;
 
-export const Button = tw.button<{ primary: boolean; }>`
-  flex
-  ${(props) => (props.primary ? 'bg-indigo-900' : 'bg-indigo-300')}
+export const Button = tw.button<{ $primary: boolean; }>`
+  flex 
+  items-center 
+  justify-center
+  h-8
+  ${(props) => (props.$primary ? 'bg-indigo-900' : 'bg-indigo-300')}
 `;
