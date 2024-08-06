@@ -1,0 +1,1 @@
+export default 'https://via.placeholder.com/48';
