@@ -1,18 +1,21 @@
-import { Container, About, Shortcut, Profile, Header } from './styled';
+import ProfileCard from '../../components/cards/profile/ProfileCard';
+import { StyledContainer, StyledAboutCard, StyledCard, StyledProfileCard, StyledHeader } from './styled';
 
 const Home = () => {
   return (
     <>
-      <Header>
-        <About to="/about">
+      <StyledHeader>
+        <StyledAboutCard to="/about">
           About kjdfhksg osifus oidf osdsod8s98 dgsdysidu fysiudf
-        </About>
-        <Profile to="/profile">Profile</Profile>
-      </Header>
-      <Container>
-        <Shortcut to="/about">Device</Shortcut>
-        <Shortcut to="/login">Login</Shortcut>
-      </Container>
+        </StyledAboutCard>
+        <StyledProfileCard to="/profile">
+          <ProfileCard />
+        </StyledProfileCard>
+      </StyledHeader>
+      <StyledContainer>
+        <StyledCard to="/about">Device</StyledCard>
+        <StyledCard to="/login">Login</StyledCard>
+      </StyledContainer>
     </>
   );
 };

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import tw from 'tailwind-styled-components';
 
-const HomeItem = `
+const StyledHomeItem = `
   w-full
   border 
   border-gray-300 
@@ -15,14 +15,14 @@ const HomeItem = `
   hover:text-blue-700
 `;
 
-const HomeLink = tw(Link)`${() => `
+const StyledHomeLink = tw(Link)`${() => `
   flex 
   items-center 
   justify-center
-  ${HomeItem}`}
+  ${StyledHomeItem}`}
 `;
 
-const Container = tw.section`
+export const StyledContainer = tw.section`
   min-h-screen
   grid 
   gap-4 
@@ -37,11 +37,11 @@ const Container = tw.section`
   bg-zinc-100
 `;
 
-const Shortcut = tw(HomeLink)`
+export const StyledCard = tw(StyledHomeLink)`
   aspect-[5/3]
 `;
 
-const Header = tw.header`
+export const StyledHeader = tw.header`
   grid
   grid-rows-[repeat(3,_1fr)]
   grid-cols-[repeat(5,_1fr)]
@@ -49,22 +49,26 @@ const Header = tw.header`
   h-40
   p-2
   bg-zinc-200
-  ${() => `${HomeItem}`}
+  ${() => `${StyledHomeItem}`}
 `;
 
-const About = tw(HomeLink)`
+export const StyledAboutCard = tw(StyledHomeLink)`
   row-span-2
   col-span-3
   p-2
+  text-gray-700
   bg-slate-100
+  md:row-span-2
+  md:col-span-4
 `;
 
-const Profile = tw(HomeLink)`
-  items-stretch
+export const StyledProfileCard = tw(StyledHomeLink)`
   row-span-3
   col-span-2
   col-start-4
+  items-stretch
   bg-slate-100
+  md:row-span-3
+  md:col-span-1
+  md:col-start-5
 `;
-
-export { Container, Shortcut, Header, About, Profile };
