@@ -1,0 +1,14 @@
+const options: Intl.DateTimeFormatOptions = {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+};
+
+const HumanReadableDate = ({ timestamp }: { timestamp: string; }) => {
+  const date = new Date(timestamp);
+  return <span>{date.toLocaleString(undefined, options)}</span>;
+};
+
+export default HumanReadableDate;

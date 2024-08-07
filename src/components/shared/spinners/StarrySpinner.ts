@@ -1,14 +1,12 @@
 import styled, { keyframes } from 'styled-components';
 
-// Define the keyframes for the rotation animation
 const rotate = keyframes`
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 `;
 
-// Create the styled component for the spinner
 export const StarrySpinner = styled.div`
-  position: relative;
+  position: absolute;
   width: 50px;
   height: 50px;
   border-radius: 50%;

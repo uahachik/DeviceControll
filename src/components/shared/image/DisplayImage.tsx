@@ -12,11 +12,10 @@ const DisplayImage: FC<DisplayImageProps> = ({ src, alt, ...props }) => {
   const handleImageLoad = useCallback(() => {
     setIsLoaded(true);
   }, []);
-
   return (
     <>
       {!isLoaded && (
-        <StarrySpinner />
+        <StarrySpinner className={props.className} />
       )}
       <StyledProfileImage src={src} alt={alt} onLoad={handleImageLoad} {...props} />
     </>
