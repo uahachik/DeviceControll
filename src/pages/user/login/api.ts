@@ -1,6 +1,6 @@
 import { UserCreateInput } from '../types';
 
-export const submitForm = async (data: UserCreateInput) => {
+export const submitForm = async (data: UserCreateInput): Promise<UserCreateInput> => {
   const response = await fetch('/api/user/login', {
     method: 'POST',
     headers: {
@@ -10,7 +10,8 @@ export const submitForm = async (data: UserCreateInput) => {
   });
 
   if (!response.ok) {
-    throw new Error('Network response was not ok');
+    const errorData = await response.json();
+    throw errorData;
   }
 
   return response.json();

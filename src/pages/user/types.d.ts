@@ -1,3 +1,8 @@
+export type ReplyErrorType = {
+  message: string;
+  cause: string;
+};
+
 export interface UserCreateInput {
   email: string;
   password: string;
@@ -17,7 +22,8 @@ export interface UserCreateInput {
 //   Body: UserCreateInput;
 // }
 
-export type LoginType = {
-  email: string;
-  password: string;
-};
+export interface ProfileReply {
+  data: {
+    user: UserCreateInput;
+  };
+}

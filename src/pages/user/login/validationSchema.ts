@@ -1,5 +1,9 @@
 import { JSONSchemaType } from 'ajv';
-import { LoginType } from '../types';
+
+type LoginType = {
+  email: string;
+  password: string;
+};
 
 const loginSchema: JSONSchemaType<LoginType> = {
   type: 'object',

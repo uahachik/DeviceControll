@@ -1,6 +1,6 @@
 import tw from 'tailwind-styled-components';
 
-const Form = tw.form`
+export const Form = tw.form`
   flex
   flex-col
   items-center
@@ -11,18 +11,18 @@ const Form = tw.form`
   mx-auto
 `;
 
-const InputContainer = tw.div`
+export const InputContainer = tw.div`
   relative
   w-full
   h-20
 `;
 
-const Label = tw.label`
+export const Label = tw.label`
   font-bold
   text-gray-600
 `;
 
-const Input = tw.input<{ $hasError: boolean; }>`
+export const Input = tw.input<{ $hasError: boolean; }>`
   w-full
   p-2 
   border-2
@@ -32,7 +32,7 @@ const Input = tw.input<{ $hasError: boolean; }>`
   ${({ $hasError }) => $hasError ? 'border-red-500 focus:border-red-500' : 'border-neutral-600'}
 `;
 
-const ToggleButton = tw.button<{ $hasError: boolean; }>`
+export const ToggleButton = tw.button<{ $hasError: boolean; }>`
   absolute
   inset-y-3
   right-0
@@ -54,25 +54,25 @@ hover:border-l-gray-300
   focus:outline-none
 
   ${({ $hasError }) => {
-    if ($hasError)
+    if ($hasError) {
       return `
         border-red-500
         border-l-gray-200
         hover:border-red-600
         hover:border-l-gray-300
       `;
-  }
-  }}
+    }
+  }}}
 `;
 
-const ErrorMessage = tw.p`
+export const ErrorMessage = tw.p`
   absolute
   mt-1
 text-red-600
   text-sm
 `;
 
-const Button = tw.button`;
+export const SubmitButton = tw.button`;
   w-full
   mt-2
   py-2
@@ -82,5 +82,3 @@ text-white
   focus:outline-none
 hover:bg-blue-600
 `;
-
-export { Form, Label, InputContainer, Input, ToggleButton, ErrorMessage, Button };;

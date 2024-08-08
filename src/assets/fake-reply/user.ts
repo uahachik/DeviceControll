@@ -1,6 +1,6 @@
 import { ProfileReply } from '../../pages/user/types';
 
-const mockedReply: ProfileReply = {
+const mockedUserReply: ProfileReply = {
   data: {
     user: {
       firstName: 'Stive',
@@ -9,8 +9,9 @@ const mockedReply: ProfileReply = {
       password: '',
       profile: 'test profile text',
       lastActive: new Date().toISOString(),
+      createdAt: new Date().toISOString(),
     }
   }
 };
 
-export default mockedReply;
+export default mockedUserReply;

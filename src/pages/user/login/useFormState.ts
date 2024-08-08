@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { FieldError, FieldErrorsImpl, FieldValues, useForm } from 'react-hook-form';
 import Ajv from 'ajv';
 import { ajvResolver } from '@hookform/resolvers/ajv';
 import ajvErrors from 'ajv-errors';
@@ -13,14 +13,27 @@ const resolver = ajvResolver(loginSchema, {
   formats: fullFormats,
 });
 
+const getErrorMessage = <TFieldValues extends FieldValues>(
+  errors: Record<string, FieldError | FieldErrorsImpl<TFieldValues> | undefined>
+): Record<string, string> => {
+  const errorMessages: Record<string, string> = {};
+  for (const [key, value] of Object.entries(errors)) {
+    if (value && typeof value.message === 'string') {
+      errorMessages[key] = value.message;
+    } else {
+      errorMessages[key] = 'An error occurred';
+    }
+  }
+  return errorMessages;
+};
+
 const useFormState = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm({
-    resolver: resolver,
-  });
+  const { register, handleSubmit, formState: { errors } } = useForm<any>({ resolver });
+  const errorMessages = getErrorMessage(errors);
   return {
     register,
     handleSubmit,
-    errors,
+    errors: errorMessages,
   };
 };
 
