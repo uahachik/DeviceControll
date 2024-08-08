@@ -1,45 +1,56 @@
 import { useState } from 'react';
 import useEntityMutation from '../../../hooks/useEntityMutation';
-import { UserCreateInput } from '../types';
+import ErrorMessage from '../../../components/shared/errors/ErrorMessage';
+import { ReplyError, UserCreateInput } from '../types';
 import { submitForm } from './api';
 import useFormState from './useFormState';
-import { ErrorMessage, Form, Input, InputContainer, Label, SubmitButton, ToggleButton } from './styled';
+import {
+  StyledErrorMessage,
+  StyledForm,
+  StyledInput,
+  StyledInputContainer,
+  StyledLabel,
+  StyledSubmitButton,
+  StyledToggleButton,
+} from './styled';
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [serverError, setServerError] = useState<ReplyError | null>(null);
+
   const { register, handleSubmit, errors } = useFormState();
 
-  const mutation = useEntityMutation(submitForm, 'user', '/');
+  const mutation = useEntityMutation(submitForm, setServerError, null, '/', 'user');
 
   const onSubmit = (formData: UserCreateInput) => {
     mutation.mutate(formData);
   };
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
-      <InputContainer>
-        <Label>Email: </Label>
-        <Input type="email" {...register('email')} $hasError={!!errors.email} />
-        {errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
-      </InputContainer>
-      <InputContainer>
-        <Label>Password: </Label>
-        <Input
+    <StyledForm onSubmit={handleSubmit(onSubmit)}>
+      {serverError && <ErrorMessage $serverError={serverError} />}
+      <StyledInputContainer>
+        <StyledLabel>Email: </StyledLabel>
+        <StyledInput type="email" {...register('email')} $hasError={!!errors.email} />
+        {errors.email && <StyledErrorMessage>{errors.email}</StyledErrorMessage>}
+      </StyledInputContainer>
+      <StyledInputContainer>
+        <StyledLabel>Password: </StyledLabel>
+        <StyledInput
           type={passwordVisible ? 'text' : 'password'}
           $hasError={!!errors.password}
           {...register('password')}
         />
-        <ToggleButton
+        <StyledToggleButton
           type="button"
           $hasError={!!errors.password}
           onClick={() => setPasswordVisible(!passwordVisible)}>
           {passwordVisible ? 'Hide' : 'Show'}
-        </ToggleButton>
-        {errors.password && <ErrorMessage>{errors.password}</ErrorMessage>}
-      </InputContainer>
-      <SubmitButton type="submit">Submit</SubmitButton>
-      {/* {serverError && <ErrorMessage>{serverError}</ErrorMessage>} */}
-    </Form>
+        </StyledToggleButton>
+        {errors.password && <StyledErrorMessage>{errors.password}</StyledErrorMessage>}
+      </StyledInputContainer>
+      <StyledSubmitButton type="submit">Submit</StyledSubmitButton>
+    </StyledForm>
   );
 };
 

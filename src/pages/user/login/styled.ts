@@ -1,6 +1,6 @@
 import tw from 'tailwind-styled-components';
 
-export const Form = tw.form`
+export const StyledForm = tw.form`
   flex
   flex-col
   items-center
@@ -11,18 +11,18 @@ export const Form = tw.form`
   mx-auto
 `;
 
-export const InputContainer = tw.div`
+export const StyledInputContainer = tw.div`
   relative
   w-full
   h-20
 `;
 
-export const Label = tw.label`
+export const StyledLabel = tw.label`
   font-bold
   text-gray-600
 `;
 
-export const Input = tw.input<{ $hasError: boolean; }>`
+export const StyledInput = tw.input<{ $hasError: boolean; }>`
   w-full
   p-2 
   border-2
@@ -32,7 +32,7 @@ export const Input = tw.input<{ $hasError: boolean; }>`
   ${({ $hasError }) => $hasError ? 'border-red-500 focus:border-red-500' : 'border-neutral-600'}
 `;
 
-export const ToggleButton = tw.button<{ $hasError: boolean; }>`
+export const StyledToggleButton = tw.button<{ $hasError: boolean; }>`
   absolute
   inset-y-3
   right-0
@@ -65,14 +65,14 @@ hover:border-l-gray-300
   }}}
 `;
 
-export const ErrorMessage = tw.p`
+export const StyledErrorMessage = tw.p`
   absolute
   mt-1
 text-red-600
   text-sm
 `;
 
-export const SubmitButton = tw.button`;
+export const StyledSubmitButton = tw.button`;
   w-full
   mt-2
   py-2

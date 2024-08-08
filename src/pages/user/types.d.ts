@@ -1,4 +1,4 @@
-export type ReplyErrorType = {
+export type ReplyError = {
   message: string;
   cause: string;
 };
