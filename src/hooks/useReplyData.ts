@@ -3,7 +3,10 @@ import { useQuery } from 'react-query';
 const environment = import.meta.env.MODE;
 
 export default function useReplyData<T>(entity: string, replyData: T): T {
-  if (environment === 'development' && !(navigator.userAgent).includes('Chrome')) {
+  if (
+    environment === 'development' &&
+    !(navigator.userAgent.includes('Chrome') || (navigator.userAgent).includes('Mozilla'))
+  ) {
     return replyData;
   }
   const queryResult = useQuery(entity, () => null, {
