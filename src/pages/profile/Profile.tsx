@@ -36,10 +36,10 @@ const Profile = () => {
             <StyledProfileBio>{email}</StyledProfileBio>
             <StyledProfileBio>Personal data: {profile}</StyledProfileBio>
             <StyledProfileBio>
-              Last login: <HumanReadableDate timestamp={lastActive as string} />
+              Last login: <HumanReadableDate timestamp={lastActive} />
             </StyledProfileBio>
             <StyledProfileBio>
-              Registration date: <HumanReadableDate timestamp={createdAt as string} />
+              Registration date: <HumanReadableDate timestamp={createdAt} />
             </StyledProfileBio>
           </StyledProfileContent>
         </StyledProfile>

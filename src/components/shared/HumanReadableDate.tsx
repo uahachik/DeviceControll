@@ -6,8 +6,8 @@ const options: Intl.DateTimeFormatOptions = {
   minute: '2-digit',
 };
 
-const HumanReadableDate = ({ timestamp }: { timestamp: string; }) => {
-  const date = new Date(timestamp);
+const HumanReadableDate = ({ timestamp }: { timestamp: string | Date | undefined; }) => {
+  const date = new Date(String(timestamp));
   return <span>{date.toLocaleString(undefined, options)}</span>;
 };
 
