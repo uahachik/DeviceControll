@@ -71,7 +71,7 @@ const Device = () => {
       {serverError && <ErrorMessage $serverError={serverError} />}
       <GoBackButton path="/" />
       <StyledSection>
-        <StyledTitle>Profile</StyledTitle>
+        <StyledTitle>Devices</StyledTitle>
         {device?.map(({ id, dsn, type, capacity, content, battery, firstUserId, commissionedAt, lastActive }) => {
           return (
             <div key={id}>
