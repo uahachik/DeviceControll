@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import useEntityMutation from '../../../hooks/useEntityMutation';
-import ErrorMessage from '../../../components/shared/errors/ErrorMessage';
-import { ReplyError, UserCreateInput } from '../types';
-import { submitForm } from './api';
+import { useEntityMutation, mutationFn } from '../../../api/useEntityMutation';
+import { UserCreateInput } from '../types';
 import useFormState from './useFormState';
 import {
   StyledErrorMessage,
@@ -16,19 +14,19 @@ import {
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [serverError, setServerError] = useState<ReplyError | null>(null);
-
   const { register, handleSubmit, errors } = useFormState();
-
-  const mutation = useEntityMutation(submitForm, setServerError, null, '/', 'user');
+  const mutation = useEntityMutation(mutationFn, { store: ['user'], redirect: '/' });
 
   const onSubmit = (formData: UserCreateInput) => {
-    mutation.mutate(formData);
+    mutation.mutate({
+      path: '/api/user/login',
+      method: 'POST',
+      body: formData,
+    });
   };
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
-      {serverError && <ErrorMessage $serverError={serverError} />}
       <StyledInputContainer>
         <StyledLabel>Email: </StyledLabel>
         <StyledInput type="email" {...register('email')} $hasError={!!errors.email} />

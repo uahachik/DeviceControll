@@ -1,4 +1,4 @@
-export interface IDevece {
+export interface IDevice {
   id?: number;
   dsn: string;
   type: string;

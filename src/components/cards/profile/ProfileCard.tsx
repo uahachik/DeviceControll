@@ -1,11 +1,11 @@
 import image from '../../../assets/default-profile-image.jpg';
 import DisplayImage from '../../shared/image/DisplayImage';
-import useReplyData from '../../../hooks/useReplyData';
+import usePrefetchedData from '../../../api/usePrefetchedData';
 import mockedUserReply from '../../../assets/fake-reply/user';
 import { StyledProfileCard, StyledProfileContent, StyledProfileImageContainer, StyledProfileName } from './styled';
 
 const ProfileCard = () => {
-  const { firstName } = useReplyData('user', mockedUserReply).data.user;
+  const { firstName } = usePrefetchedData('user', mockedUserReply).data.user;
   return (
     <StyledProfileCard>
       <StyledProfileImageContainer>

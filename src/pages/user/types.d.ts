@@ -1,9 +1,4 @@
-export type ReplyError = {
-  message: string;
-  cause: string;
-};
-
-export interface UserCreateInput {
+export type UserCreateInput = {
   email: string;
   password: string;
   firstName: string;

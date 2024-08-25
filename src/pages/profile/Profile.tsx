@@ -1,10 +1,11 @@
+import { useEffect } from 'react';
 import image from '../../assets/default-profile-image.jpg';
 import avatar from '../../assets/default-avatar';
 import HumanReadableDate from '../../components/shared/HumanReadableDate';
 import DisplayImage from '../../components/shared/image/DisplayImage';
 import GoBackButton from '../../components/shared/buttons/GoBackButton';
-import useReplyData from '../../hooks/useReplyData';
-import mockedUserReply from '../../assets/fake-reply/user';
+import { useEntityMutation, mutationFn } from '../../api/useEntityMutation';
+import { UserCreateInput } from '../user/types';
 import {
   StyledSection,
   StyledProfileBio,
@@ -16,8 +17,16 @@ import {
 } from './styled';
 
 const Profile = () => {
-  const { user } = useReplyData('user', mockedUserReply).data;
-  const { firstName, lastName, email, profile, createdAt, lastActive } = user;
+  const mutation = useEntityMutation(mutationFn, { store: ['user'] });
+  useEffect(() => {
+    mutation.mutate({
+      path: '/api/user/me',
+      method: 'POST',
+    });
+  }, []);
+
+  const user: UserCreateInput = mutation.data && mutation.data.user;
+  const { firstName, lastName, email, profile, createdAt, lastActive } = user || '';
   return (
     <StyledPageContainer>
       <GoBackButton path="/" />

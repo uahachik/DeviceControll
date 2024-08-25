@@ -1,10 +1,15 @@
 import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import App from './App';
 import './index.css';
+
+const queryClientInstance = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   // this double-invokes functions like useEffect in development mode
   // <React.StrictMode>
-  <App />
+  <QueryClientProvider client={queryClientInstance}>
+    <App />
+  </QueryClientProvider>
   // </React.StrictMode>,
 );

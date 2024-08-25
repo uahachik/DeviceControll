@@ -1,4 +1,4 @@
-import { ReplyError } from '../../../pages/user/types';
+import { ReplyError } from './types';
 import { StyledErrorMessage } from './styled';
 
 const ErrorMessage = ({ $serverError }: { $serverError: ReplyError; }) => {
