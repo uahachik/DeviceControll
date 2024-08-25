@@ -24,7 +24,6 @@ const Profile = () => {
       method: 'POST',
     });
   }, []);
-
   const user: UserCreateInput = mutation.data && mutation.data.user;
   const { firstName, lastName, email, profile, createdAt, lastActive } = user || '';
   return (
